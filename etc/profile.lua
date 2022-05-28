@@ -1,5 +1,4 @@
-
-  dirr = '/'
+dirr = '/'
     -- Модулs
     gpu = require('component').gpu
     term = require('term')
@@ -217,7 +216,45 @@
               os.execute('rmdir '..dirr..'/'..obj)
             end
 
+            if arg == 'калькулятор' then
+              num1 = io.read()
+              dig = io.read()
+              num2 = io.read()
 
+              if dig == '+' then
+              print(num1 .. ' + ' .. num2 .. ' = ' .. tonumber(num1) + tonumber(num2))
+                end
+
+                if dig == '-' then
+                print(num1 .. ' - ' .. num2 .. ' = ' .. tonumber(num1) - tonumber(num2))
+                  end
+
+                  if dig == '*' then
+                  print(num1 .. ' * ' .. num2 .. ' = ' .. tonumber(num1) * tonumber(num2))
+                    end
+
+                    if dig == ':' then
+                    print(num1 .. ' / ' .. num2 .. ' = ' .. tonumber(num1) / tonumber(num2))
+                      end
+
+            end
+
+            if arg == 'включить креатив' then
+              db.runCommand('gamemode c ' .. player)
+            end
+
+            if arg == 'включить выживание' then
+              db.runCommand('gamemode s ' .. player)
+            end
+
+            if arg == 'записать обновление' then
+              print('Укажите накопитель:')
+              os.execute('ls /mnt/')
+              io.write('Накопитель >> ')
+              dev = io.read()
+              os.execute('pastebin get 5qDmAQif /mnt/' .. dev ..'/updater.lua')
+              print('Готово')
+            end
 
 
     -- Конец цикла
