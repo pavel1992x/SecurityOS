@@ -65,7 +65,7 @@ dirr = '/'
 
     -- Вызов редрава
     redraw()
-    event.listen('modem_message', calls())
+    event.listen('modem_message', calls)
     -- Начало диструктивной оболочки
     while 1 < 2 do
     text(0x32d415)
