@@ -15,7 +15,7 @@ dirr = '/'
   io.write('Пожалуйста, введите ваш никнейм >. ')
   player = io.read()
     term.setCursor(1,4)
-  io.write('Введите порт устройства >> ')
+  io.write('Введите порт устройства > ')
   port1 = io.read()
   begport = tonumber(port1)
   tunnel.open(begport)
