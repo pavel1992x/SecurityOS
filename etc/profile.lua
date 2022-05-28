@@ -256,6 +256,15 @@ dirr = '/'
               print('Готово')
             end
 
+            if arg == 'выдать' then
+              io.write('Предмет >. ')
+              entity = io.read()
+              io.write('Кол-во >.')
+              count = io.read()
+              db.runCommand('give '..player..' '..entity..' '..count)
+              print('Игроку '..player..' выдано '..entity..' в количестве '..count)
+              end
+
 
     -- Конец цикла
     end
