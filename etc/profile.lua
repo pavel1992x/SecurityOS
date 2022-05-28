@@ -14,9 +14,14 @@ dirr = '/'
   term.setCursor(1,3)
   io.write('Пожалуйста, введите ваш никнейм >. ')
   player = io.read()
-  term.setCursor(1,5)
-  io.write('Спасибо, за использование нашей серии продуктов CORTEX')
+    term.setCursor(1,4)
+  io.write('Введите порт устройства >> ')
+  port1 = io.read()
+  begport = tonumber(port1)
+  tunnel.open(begport)
   term.setCursor(1,6)
+  io.write('Спасибо, за использование нашей серии продуктов CORTEX')
+  term.setCursor(1,7)
   io.write('Приятного пользования!')
   os.sleep(2)
 
@@ -40,10 +45,27 @@ dirr = '/'
     print(' Совет Безопасности ('.. player ..')')
     back(0x000000)
     end
+    function calls(q1, w2, e3, r4, t5, y6)
+      if y6 == 'call' then
+        q1,w2,e3,r4,t5,y6 = event.pull('modem_message')
+        c4 = tonumber(y6)
+          comp.beep()
+          comp.beep()
+          comp.beep()
+          comp.beep()
+          comp.beep()
+          comp.beep()
+          comp.beep()
+          comp.beep()
+          comp.beep()
+          comp.beep()
+        end
+    end
+
 
     -- Вызов редрава
     redraw()
-
+    event.listen('modem_message', calls())
     -- Начало диструктивной оболочки
     while 1 < 2 do
     text(0x32d415)
@@ -81,9 +103,7 @@ dirr = '/'
 
 
       if arg == 'принять смс' then
-        io.write('port >. ')
-        port = io.read()
-        tunnel.open(tonumber(port))
+        tunnel.broadcast(tonumber(c4), 'ok')
         q1, w2, e3, r4, t5, y6 = event.pull('modem_message')
         comp.beep()
         comp.beep()
@@ -94,9 +114,21 @@ dirr = '/'
         print(y6)
       end
 
+      if arg == 'дозвон' then
+        port = io.read()
+        tunnel.broadcast(tonumber(port), 'call')
+        q1, w2, e3, r4, t5, y6 = event.pull('modem_message')
+        if y6 == 'ok' then
+          io.write('sms >> ')
+          sms = io.read()
+            tunnel.broadcast(tonumber(port), sms)
+        end
+      end
+
       if arg == 'отправить смс' then
         io.write('port >. ')
         port = io.read()
+        tunnel.broadcast(tonumber(port), 'ok')
         comp.beep()
         io.write('Введите сообщение >. ')
         sms = io.read()
