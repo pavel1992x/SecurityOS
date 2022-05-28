@@ -3,7 +3,7 @@ dirr = '/'
     gpu = require('component').gpu
     term = require('term')
     db = require('component').debug
-    tunnel = require('component').tunnel
+    tunnel = require('component').modem
     event = require('event') -- Обработчик событий
     comp = require('computer')
 
@@ -81,17 +81,22 @@ dirr = '/'
 
 
       if arg == 'принять смс' then
+        io.write('port >. ')
+        port = io.read()
+        tunnel.open(tonumber(port))
         q1, w2, e3, r4, t5, y6 = event.pull('modem_message')
         comp.beep()
         comp.beep()
         comp.beep()
         comp.beep()
         comp.beep()
-        print('Соедененная карта, получила сообщение!')
+        print('Модем получил сообщение!')
         print(y6)
       end
 
       if arg == 'отправить смс' then
+        io.write('port >. ')
+        port = io.read()
         comp.beep()
         io.write('Введите сообщение >. ')
         sms = io.read()
@@ -107,7 +112,7 @@ dirr = '/'
         comp.beep()
         comp.beep()
         comp.beep()
-        tunnel.send(player .. ': ' .. sms)
+        tunnel.broadcast(port, player .. ': ' .. sms)
       end
 
       if arg == 'очистить' then
