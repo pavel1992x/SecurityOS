@@ -45,27 +45,12 @@ dirr = '/'
     print(' Совет Безопасности ('.. player ..')')
     back(0x000000)
     end
-    function calls(q1, w2, e3, r4, t5, y6)
-      if y6 == 'call' then
-        q1,w2,e3,r4,t5,y6 = event.pull('modem_message')
-        c4 = tonumber(y6)
-          comp.beep()
-          comp.beep()
-          comp.beep()
-          comp.beep()
-          comp.beep()
-          comp.beep()
-          comp.beep()
-          comp.beep()
-          comp.beep()
-          comp.beep()
-        end
-    end
+
 
 
     -- Вызов редрава
     redraw()
-    event.listen('modem_message', calls)
+
     -- Начало диструктивной оболочки
     while 1 < 2 do
     text(0x32d415)
@@ -103,7 +88,6 @@ dirr = '/'
 
 
       if arg == 'принять смс' then
-        tunnel.broadcast(tonumber(c4), 'ok')
         q1, w2, e3, r4, t5, y6 = event.pull('modem_message')
         comp.beep()
         comp.beep()
@@ -114,21 +98,11 @@ dirr = '/'
         print(y6)
       end
 
-      if arg == 'дозвон' then
-        port = io.read()
-        tunnel.broadcast(tonumber(port), 'call')
-        q1, w2, e3, r4, t5, y6 = event.pull('modem_message')
-        if y6 == 'ok' then
-          io.write('sms >> ')
-          sms = io.read()
-            tunnel.broadcast(tonumber(port), sms)
-        end
-      end
+
 
       if arg == 'отправить смс' then
         io.write('port >. ')
         port = io.read()
-        tunnel.broadcast(tonumber(port), 'ok')
         comp.beep()
         io.write('Введите сообщение >. ')
         sms = io.read()
@@ -145,6 +119,7 @@ dirr = '/'
         comp.beep()
         comp.beep()
         tunnel.broadcast(tonumber(port), player .. ': ' .. sms)
+        print('Сообщение доставлено')
       end
 
       if arg == 'очистить' then
