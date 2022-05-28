@@ -1,6 +1,6 @@
 
   dirr = '/'
-    -- Модули
+    -- Модулs
     gpu = require('component').gpu
     term = require('term')
     db = require('component').debug
