@@ -48,7 +48,7 @@
     -- Начало диструктивной оболочки
     while 1 < 2 do
     text(0x32d415)
-    io.write(player .. '@sb~$ ')
+    io.write(player .. '@cmd~$ ')
     x,y = term.getCursor()
     term.setCursor(1,1)
     gpu.setBackground(0xFFFFFF)
@@ -67,10 +67,10 @@
     text(0x32d415)
 
     term.setCursor(x,y)
-    io.write(player .. '@sb~$ ')
+    io.write(player .. '@cmd~$ ')
   else
     text(0x32d415)
-    io.write(player .. '@sb~$ ')
+    io.write(player .. '@cmd~$ ')
   term.setCursor(x,y)
   end
     text(0xFFFFFF)
