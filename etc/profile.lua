@@ -112,7 +112,7 @@ dirr = '/'
         comp.beep()
         comp.beep()
         comp.beep()
-        tunnel.broadcast(port, player .. ': ' .. sms)
+        tunnel.broadcast(tonumber(port), player .. ': ' .. sms)
       end
 
       if arg == 'очистить' then
